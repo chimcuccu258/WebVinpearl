@@ -2,13 +2,16 @@
 
 ## Getting started
 
+### About:
+- This project was developed by `Minh Nga (63130803)` and `Hoang Trong (63135901)`.
+
 ### Available scripts
 
-- Use to install or update Composer:   
-`composer install` | `composer update`
+-   Use to install or update Composer:  
+    `composer install` | `composer update`
 
-- Start project:  
-`php artisan key:generate` | `php artisan migrate` | `php artisan serve`
+-   Start project:  
+    `php artisan key:generate` | `php artisan migrate` | `php artisan serve`
 
 ## Folder Structure
 
