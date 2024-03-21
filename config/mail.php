@@ -39,8 +39,8 @@ return [
             'host' => 'smtp.gmail.com',
             'port' => 587,
             'encryption' => 'tls',
-            'username' => 'duy.nh.62cntt@ntu.edu.vn',
-            'password' => 'mbyhvpumfyagghqj',
+            'username' => 'abc@gmail.com',
+            'password' => 'abc',
             'timeout' => null,
         ],
 
@@ -91,7 +91,7 @@ return [
     */
 
     'from' => [
-        'address' => 'duy.nh.62cntt@ntu.edu.vn',
+        'address' => 'abc@gmail.com',
         'name' => 'Thông tin hóa đơn',
     ],
 
