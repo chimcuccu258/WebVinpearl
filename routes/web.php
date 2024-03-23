@@ -41,31 +41,21 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('type_services', TypeServicesController::class);
     Route::resource('services', ServicesController::class);
     Route::resource('tickets', TicketsController::class);
-    // Route::get('nhan-viens/export', [NhanVienController::class, 'export'])->name('nhan_viens.export');
-    // Route::get('loai-nhan-viens/export', [LoaiNhanVienController::class, 'export'])->name('loai_nhan_viens.export');
-    // Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
-    // Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
-    // Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
-    // Route::get('vess/export', [VeController::class, 'export'])->name('ves.export');
+    Route::get('employees/export', [EmployeesController::class, 'export'])->name('employees.export');
+    Route::get('type_employees/export', [TypeEmployeesController::class, 'export'])->name('type_employees.export');
+    Route::get('customers/export', [CustomersController::class, 'export'])->name('customers.export');
+    Route::get('type_services/export', [TypeServicesController::class, 'export'])->name('type_services.export');
+    Route::get('services/export', [ServicesController::class, 'export'])->name('services.export');
+    Route::get('tickets/export', [TicketsController::class, 'export'])->name('services.export');
 });
 
 Route::get('/', [ServicesController::class, 'homeIndex'])->name('index');
-Route::get('/show/{maDV}', [ServicesController::class, 'showForCustomer'])->name('show');
+Route::get('/show/{serviceId}', [ServicesController::class, 'showForCustomer'])->name('show');
 
 Route::get('/search', [SearchesController::class, 'index'])->name('search');
 ////Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
 Route::get('/info', [InfoController::class, 'show'])->name('info.show');
-
-// route btth
-// Route::get('/thanh_vien', [BTTHController::class, 'index'])->name('thanh_vien');
-// Route::get('/btth/{id}', [BTTHController::class, 'showLevelTwoDirectories'])->name('showLevelTwoDirectories');
-// Route::get('/btth/{id}/{levelTwoFolder}', [BTTHController::class, 'showLevelThreeFiles'])->name('showLevelThreeFiles');
-// Route::get('/btth/{id}/{levelTwoFolder}/{fileName}', [BTTHController::class, 'showFileContent'])->name('showFileContent');
-// Route::post('/btth/{id}', [BTTHController::class, 'showLevelTwoDirectories'])->name('showLevelTwoDirectories');
-// Route::post('/btth/{id}/{levelTwoFolder}', [BTTHController::class, 'showLevelThreeFiles'])->name('showLevelThreeFiles');
-// Route::post('/btth/{id}/{levelTwoFolder}/{fileName}', [BTTHController::class, 'showFileContent'])->name('showFileContent');
-// chưa làm nút back
 
 //Check login -> true: vào, false: thoát về home
 Route::middleware('checkLogin')->group(function () {
