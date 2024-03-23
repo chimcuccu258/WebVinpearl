@@ -123,6 +123,6 @@ class CustomersController extends Controller
 
     public function export()
     {
-        return Excel::download(new CustomerExport(), 'khach-hangs' . '.xlsx');
+        return Excel::download(new CustomerExport(), 'customers' . '.xlsx');
     }
 }
