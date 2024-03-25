@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customers;
+use App\Models\KhachHang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,21 +11,20 @@ use Illuminate\Support\Facades\Session;
 class AuthManagerController extends Controller
 {
     //Register
-    public function showRegistration()
-    {
+    public function showRegistration(){
         return view('authenticate.registration');
     }
-    function register(Request $request)
-    {
+    function register(Request $request){
         $email = request()->input('email');
 
-        // Kiểm tra email đã có trong database chưa
-        if (Customers::where('email', $email)->exists()) {
+    // Kiểm tra email đã có trong database chưa
+        if (KhachHang::where('email', $email)->exists()) {
             // Email đã tồn tại
             return redirect()->back()->with('exist-email', 'Email này đã tồn tài! Hãy sử dụng email khác.');
-        } else {
+        }
+        else{
             $user = new User();
-            $Customers = new Customers();
+            $khachHang = new KhachHang();
             $request->validate([
                 'password' => 'min:8',
                 'confirm' => 'same:password',
@@ -34,19 +33,19 @@ class AuthManagerController extends Controller
                 'confirm.same' => 'Mật khẩu xác nhận không đúng. Vui lòng thử lại',
             ]);
             $password = bcrypt($request->password);
-            $lastCustomers = Customers::query()->orderBy('customerId', 'desc')->first();
-            if ($lastCustomers) {
-                $lastCode = $lastCustomers->customerId;
+            $lastCustomer = KhachHang::query()->orderBy('maKH', 'desc')->first();
+            if ($lastCustomer) {
+                $lastCode = $lastCustomer->maKH;
                 $codeNumber = (int)substr($lastCode, 2) + 1;
             } else {
                 $codeNumber = 1;
             }
             // Format mã khách hàng và gán vào model
-            $Customers->customerId = 'Customer' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
-            $Customers->fullName = $request->name;
-            $Customers->email = $request->email;
-            $Customers->password = $password;
-            $Customers->save();
+            $khachHang->maKH = 'KH' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
+            $khachHang->hoTenKH = $request->name;
+            $khachHang->email = $request->email;
+            $khachHang->matKhau = $password;
+            $khachHang->save();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = $password;
@@ -56,16 +55,14 @@ class AuthManagerController extends Controller
     }
 
     //Login
-    public function showLogin()
-    {
-        if (Auth::check()) {
+    public function showLogin(){
+        if(Auth::check()){
             return redirect()->back();
         }
         return view('authenticate.login');
     }
-    function login(Request $request)
-    {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+    function login(Request $request){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->matKhau])){
             $request->session()->put('email', $request->email);
             return redirect()->route('index')->with('login-checked', 'Đăng nhập thành công!');
         }
@@ -76,8 +73,7 @@ class AuthManagerController extends Controller
 
 
     //Logout
-    function logout()
-    {
+    function logout(){
         Session::flush();
         Auth::logout();
         return redirect()->route('index');
