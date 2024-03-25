@@ -16,6 +16,7 @@
 ## Folder Structure
 
 ```jsx
+├── LICENSE
 ├── README.md
 ├── app
 │   ├── Console
@@ -23,39 +24,39 @@
 │   ├── Exceptions
 │   │   └── Handler.php
 │   ├── Exports
-│   │   ├── CustomerExport.php
-│   │   ├── EmployeeExport.php
-│   │   ├── ServiceExport.php
-│   │   ├── TicketExport.php
-│   │   ├── TypeEmployeeExport.php
-│   │   └── TypeServiceExport.php
+│   │   ├── DichVuExport.php
+│   │   ├── KhachHangExport.php
+│   │   ├── LoaiDichVuExport.php
+│   │   ├── LoaiNhanVienExport.php
+│   │   ├── NhanVienExport.php
+│   │   └── VeExport.php
 │   ├── Http
 │   │   ├── Controllers
 │   │   ├── Kernel.php
 │   │   ├── Middleware
 │   │   └── Requests
 │   ├── Models
-│   │   ├── BillDetails.php
-│   │   ├── Bills.php
 │   │   ├── Cart.php
-│   │   ├── Customers.php
-│   │   ├── Employees.php
-│   │   ├── Searches.php
-│   │   ├── Services.php
-│   │   ├── Shifts.php
-│   │   ├── Tickets.php
-│   │   ├── TypeEmployees.php
-│   │   ├── TypeServices.php
-│   │   └── User.php
+│   │   ├── Cthd.php
+│   │   ├── DichVu.php
+│   │   ├── HoaDon.php
+│   │   ├── KhachHang.php
+│   │   ├── LoaiDichVu.php
+│   │   ├── LoaiNhanVien.php
+│   │   ├── NhanVien.php
+│   │   ├── Search.php
+│   │   ├── SoCa.php
+│   │   ├── User.php
+│   │   └── Ve.php
 │   ├── Policies
-│   │   ├── CustomersPolicy.php
-│   │   ├── EmployeesPolicy.php
-│   │   ├── SearchesPolicy.php
-│   │   ├── ServicesPolicy.php
-│   │   ├── ShiftsPolicy.php
-│   │   ├── TicketsPolicy.php
-│   │   ├── TypeEmployeesPolicy.php
-│   │   └── TypeServicesPolicy.php
+│   │   ├── DichVuPolicy.php
+│   │   ├── KhachHangPolicy.php
+│   │   ├── LoaiDichVuPolicy.php
+│   │   ├── LoaiNhanVienPolicy.php
+│   │   ├── NhanVienPolicy.php
+│   │   ├── SearchPolicy.php
+│   │   ├── SoCaPolicy.php
+│   │   └── VePolicy.php
 │   └── Providers
 │       ├── AppServiceProvider.php
 │       ├── AuthServiceProvider.php
@@ -89,51 +90,58 @@
 │   ├── session.php
 │   └── view.php
 ├── database
-│   ├── database.sqlite
 │   ├── factories
-│   │   ├── BillDetailsFactory.php
-│   │   ├── BillsFactory.php
-│   │   ├── CustomersFactory.php
-│   │   ├── EmployeesFactory.php
-│   │   ├── SearchesFactory.php
-│   │   ├── ServicesFactory.php
-│   │   ├── ShiftsFactory.php
-│   │   ├── TicketsFactory.php
-│   │   ├── TypeEmployeesFactory.php
-│   │   ├── TypeServicesFactory.php
-│   │   └── UserFactory.php
+│   │   ├── CthdFactory.php
+│   │   ├── DichVuFactory.php
+│   │   ├── HoaDonFactory.php
+│   │   ├── KhachHangFactory.php
+│   │   ├── LoaiDichVuFactory.php
+│   │   ├── LoaiNhanVienFactory.php
+│   │   ├── NhanVienFactory.php
+│   │   ├── SearchFactory.php
+│   │   ├── SoCaFactory.php
+│   │   ├── UserFactory.php
+│   │   └── VeFactory.php
 │   ├── migrations
-│   │   ├── 0001_01_01_000000_create_users_table.php
-│   │   ├── 2024_03_20_064327_create_customers_table.php
-│   │   ├── 2024_03_20_080442_create_type_services_table.php
-│   │   ├── 2024_03_20_080658_create_type_employees_table.php
-│   │   ├── 2024_03_20_080930_create_employees_table.php
-│   │   ├── 2024_03_20_081158_create_services_table.php
-│   │   ├── 2024_03_20_081730_create_shifts_table.php
-│   │   ├── 2024_03_20_082158_create_tickets_table.php
-│   │   ├── 2024_03_20_082306_create_bills_table.php
-│   │   ├── 2024_03_20_082546_create_bill_details_table.php
-│   │   └── 2024_03_20_082723_create_searches_table.php
+│   │   ├── 2014_10_12_000000_create_users_table.php
+│   │   ├── 2024_03_25_120328_create_khach_hangs_table.php
+│   │   ├── 2024_03_25_120420_create_loai_dich_vus_table.php
+│   │   ├── 2024_03_25_120533_create_loai_nhan_viens_table.php
+│   │   ├── 2024_03_25_120554_create_nhan_viens_table.php
+│   │   ├── 2024_03_25_120618_create_dich_vus_table.php
+│   │   ├── 2024_03_25_120705_create_so_cas_table.php
+│   │   ├── 2024_03_25_120730_create_ves_table.php
+│   │   ├── 2024_03_25_120758_create_hoa_dons_table.php
+│   │   ├── 2024_03_25_120828_create_cthds_table.php
+│   │   └── 2024_03_25_120852_create_searches_table.php
 │   └── seeders
-│       ├── BillDetailsSeeder.php
-│       ├── BillsSeeder.php
-│       ├── CustomersSeeder.php
 │       ├── DatabaseSeeder.php
-│       ├── EmployeesSeeder.php
-│       ├── SearchesSeeder.php
-│       ├── ServicesSeeder.php
-│       ├── ShiftsSeeder.php
-│       ├── TicketsSeeder.php
-│       ├── TypeEmployeesSeeder.php
-│       └── TypeServicesSeeder.php
+│       ├── DichVuSeeder.php
+│       ├── KhachHangSeeder.php
+│       ├── LoaiDichVuSeeder.php
+│       ├── LoaiNhanVienSeeder.php
+│       ├── NhanVienSeeder.php
+│       ├── SearchSeeder.php
+│       ├── SoCaSeeder.php
+│       └── VeSeeder.php
+├── lang
+│   ├── en
+│   │   ├── auth.php
+│   │   ├── pagination.php
+│   │   ├── passwords.php
+│   │   └── validation.php
+│   └── en.json
 ├── package.json
 ├── phpunit.xml
 ├── public
+│   ├── css
+│   │   └── style.css
 │   ├── favicon.ico
 │   ├── index.php
+│   ├── js
+│   │   └── script.js
 │   ├── robots.txt
-│   └── storage
-public
+│   └── storage -> /Users/minhngane/Documents/Github/WebVinpearl/storage/app/public
 ├── resources
 │   ├── css
 │   │   └── app.css
@@ -141,10 +149,17 @@ public
 │   │   ├── app.js
 │   │   └── bootstrap.js
 │   └── views
+│       ├── admin
 │       ├── authenticate
-│       └── welcome.blade.php
+│       ├── cart
+│       ├── emails
+│       ├── index.blade.php
+│       ├── info.blade.php
+│       ├── layouts
+│       ├── profile
+│       ├── search.blade.php
+│       └── show.blade.php
 ├── routes
-│   ├── CartController.php
 │   ├── api.php
 │   ├── channels.php
 │   ├── console.php
@@ -152,6 +167,7 @@ public
 ├── storage
 │   ├── app
 │   │   └── public
+│   ├── debugbar
 │   ├── framework
 │   │   ├── cache
 │   │   ├── sessions
@@ -167,15 +183,15 @@ public
 │   ├── import.collection.stub
 │   └── import.model.stub
 ├── tests
+│   ├── CreatesApplication.php
 │   ├── Feature
 │   │   └── ExampleTest.php
 │   ├── TestCase.php
 │   └── Unit
 │       └── ExampleTest.php
-├── tree.txt
-└── vite.config.js
+└── webpack.mix.js
 
-40 directories, 119 files
+50 directories, 146 files
 ```
 
 ## License
