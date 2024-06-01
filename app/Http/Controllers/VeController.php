@@ -16,16 +16,17 @@ class VeController extends Controller
     public function index(Request $request)
     {
         $searchColumns = [
-            'maDV' => 'like',
+            'tenDV' => 'like',
             'giaTien' => 'like',
             'loaiVe' => 'like',
         ];
         $column = $request->get('search_by');
         $keywords = $request->get('keywords');
         $lastKeyword = $keywords;
+
         $query = Ve::query();
         $query->leftJoin('dich_vus', 'ves.maDV', '=', 'dich_vus.maDV')
-        ->select('ves.*', 'dich_vus.tenDV');
+            ->select('ves.*', 'dich_vus.tenDV');
 
         if (array_key_exists($column, $searchColumns)) {
             $operator = $searchColumns[$column];
@@ -33,38 +34,40 @@ class VeController extends Controller
                 if ($operator === 'like') {
                     $keywords = '%' . $keywords . '%';
                 }
-                $query->where($column, $operator, $keywords);
+                // Specify the table for tenDV to avoid ambiguity
+                if ($column === 'tenDV') {
+                    $query->where('dich_vus.' . $column, $operator, $keywords);
+                }
             }
         }
 
-        //sắp xếp
+        // Sorting
         $sortableColumns = ['maVe', 'tenDV', 'loaiVe', 'giaTien'];
-        $defaultColumn = 'maVe'; // Cột mặc định
-        $defaultOrder = 'asc'; // Thứ tự mặc định
- 
+        $defaultColumn = 'maVe'; // Default column
+        $defaultOrder = 'asc'; // Default order
+
         $column = $request->get('sort_by', $defaultColumn);
         $order = $request->get('order', $defaultOrder);
- 
+
         if (!in_array($column, $sortableColumns)) {
             $column = $defaultColumn;
         }
- 
+
         $data = $query->orderBy($column, $order)->paginate(10);
-        // Thêm tham số sắp xếp vào URL paginate
+        // Add sort parameters to pagination URL
         $data->appends(['sort_by' => $column, 'order' => $order]);
 
-        return view('admin.ves.index' , [
+        return view('admin.ves.index', [
             'ves' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
             'order' => $order,
         ]);
-
     }
 
     public function create()
     {
-        $dich_vus = DichVu::all(); 
+        $dich_vus = DichVu::all();
         return view('admin.ves.create', [
             'dich_vus' => $dich_vus
         ]);
@@ -87,7 +90,7 @@ class VeController extends Controller
 
     public function edit(Ve $ve)
     {
-        $dich_vus = DichVu::all(); 
+        $dich_vus = DichVu::all();
         return view('admin.ves.edit', [
             've' => $ve,
             'dich_vus' => $dich_vus,
@@ -113,6 +116,6 @@ class VeController extends Controller
     }
     public function export()
     {
-        return Excel::download(new VeExport(), 'vess'.'.xlsx');
+        return Excel::download(new VeExport(), 'vess' . '.xlsx');
     }
 }

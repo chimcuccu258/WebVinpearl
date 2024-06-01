@@ -27,7 +27,7 @@ class NhanVienController extends Controller
         $lastKeyword = $keywords;
         $query = NhanVien::query();
         $query->leftJoin('loai_nhan_viens', 'nhan_viens.maLoaiNV', '=', 'loai_nhan_viens.maLoaiNV')
-              ->select('nhan_viens.*', 'loai_nhan_viens.tenLoai');
+            ->select('nhan_viens.*', 'loai_nhan_viens.tenLoai');
 
         if (array_key_exists($column, $searchColumns)) {
             $operator = $searchColumns[$column];
@@ -65,7 +65,7 @@ class NhanVienController extends Controller
 
     public function create()
     {
-        $loai_nhan_viens = LoaiNhanVien::all(); 
+        $loai_nhan_viens = LoaiNhanVien::all();
         return view('admin.nhan_viens.create', ['loai_nhan_viens' => $loai_nhan_viens]);
     }
 
@@ -94,7 +94,7 @@ class NhanVienController extends Controller
 
     public function edit(NhanVien $nhanVien)
     {
-        $loai_nhan_viens = LoaiNhanVien::all(); 
+        $loai_nhan_viens = LoaiNhanVien::all();
         return view('admin.nhan_viens.edit', [
             'nhan_vien' => $nhanVien,
             'loai_nhan_viens' => $loai_nhan_viens,
@@ -128,7 +128,6 @@ class NhanVienController extends Controller
 
     public function export()
     {
-        return Excel::download(new NhanVienExport(), 'nhan-viens'.'.xlsx');
+        return Excel::download(new NhanVienExport(), 'nhan-viens' . '.xlsx');
     }
-
 }

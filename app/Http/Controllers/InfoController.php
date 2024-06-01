@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NhanVien;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class InfoController extends Controller
 {
     public function show()
     {
-        // Trong phương thức này, bạn có thể truy vấn dữ liệu cần thiết và truyền nó đến view
-        $members = [
-
-        ];
+        $members = [];
 
         return view('info', compact('members'));
     }

@@ -59,7 +59,7 @@ class AuthManagerController extends Controller
         if(Auth::check()){
             return redirect()->back();
         }
-        return view('authenticate.login');
+        return view('authenticate.login');  
     }
     function login(Request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->matKhau])){

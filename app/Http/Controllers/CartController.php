@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Invoice;
-use Mail;
+use Illuminate\Support\Facades\Mail;
+
 
 class CartController extends Controller
 {

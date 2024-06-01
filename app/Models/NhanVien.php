@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class NhanVien extends Model
 {
@@ -39,7 +40,7 @@ class NhanVien extends Model
             }
             // Format mã nhân viên và gán vào model
             $nhan_viens->maNV = 'NV' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
-            
+
             $employeeID = $nhan_viens->maNV;
             if (request()->hasFile('anh')) {
                 $image = request()->file('anh');
@@ -61,8 +62,7 @@ class NhanVien extends Model
     protected function getNgaySinh(): Attribute
     {
         return Attribute::make(
-            get: function ($value, $attribute)
-            {
+            get: function ($value, $attribute) {
                 return date('d/m/Y', strtotime($attribute['ngaySinh']));
             }
         );
@@ -72,5 +72,6 @@ class NhanVien extends Model
     {
         return $this->belongsTo(LoaiNhanVien::class, 'maLoaiNV', 'maLoaiNV');
     }
+
 
 }
