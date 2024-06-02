@@ -21,7 +21,7 @@ return new class extends Migration
                 $table->string('giaTien');
                 $table->primary(['maHD', 'maVe']);
                 $table->foreign('maVe')->references('maVe')->on('ves');
-                $table->foreign('maHD')->references('maHD')->on('hoadons');
+                $table->foreign('maHD')->references('maHD')->on('hoa_dons');
                 $table->timestamps();
             });
         }

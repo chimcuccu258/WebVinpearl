@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class HoaDon extends Model
 {
     use HasFactory;
-    protected $table = 'hoadons';
+    protected $table = 'hoa_dons';
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'maHD';

@@ -56,19 +56,10 @@ Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-//Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
+Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
+Route::get('/cart/payment_success', [CartController::class, 'payment_success'])->name('payment_success');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
 Route::get('/info', [InfoController::class, 'show'])->name('info.show');
-
-// // route btth
-// Route::get('/thanh_vien', [BTTHController::class, 'index'])->name('thanh_vien');
-// Route::get('/btth/{id}', [BTTHController::class, 'showLevelTwoDirectories'])->name('showLevelTwoDirectories');
-// Route::get('/btth/{id}/{levelTwoFolder}', [BTTHController::class, 'showLevelThreeFiles'])->name('showLevelThreeFiles');
-// Route::get('/btth/{id}/{levelTwoFolder}/{fileName}', [BTTHController::class, 'showFileContent'])->name('showFileContent');
-// Route::post('/btth/{id}', [BTTHController::class, 'showLevelTwoDirectories'])->name('showLevelTwoDirectories');
-// Route::post('/btth/{id}/{levelTwoFolder}', [BTTHController::class, 'showLevelThreeFiles'])->name('showLevelThreeFiles');
-// Route::post('/btth/{id}/{levelTwoFolder}/{fileName}', [BTTHController::class, 'showFileContent'])->name('showFileContent');
-// // chưa làm nút back
 
 //Check login -> true: vào, false: thoát về home
 Route::middleware('checkLogin')->group(function(){

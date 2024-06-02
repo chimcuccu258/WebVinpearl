@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('cart.index');
     }
-    public function addToCart(Request $request) {
+    public function addToCart(Request $request)
+    {
         $maDV = $request->input('maDV');
         $loaiVe = $request->input('loaiVe');
         $dichVu = DB::table('dich_vus')
@@ -28,12 +30,12 @@ class CartController extends Controller
             ->where('dich_vus.maDV', $maDV)
             ->where('ves.loaiVe', $loaiVe)
             ->first();
-        if(!$dichVu) {
+        if (!$dichVu) {
             abort(404);
         }
         // Kiểm tra xem giỏ hàng đã tồn tại chưa, nếu chưa thì tạo mới
         $maVe = $dichVu->maVe;
-        if(!Session::has('cart')) {
+        if (!Session::has('cart')) {
             Session::put('cart', []);
         }
         $cart = Session::get('cart');
@@ -53,32 +55,35 @@ class CartController extends Controller
             ];
         }
         Session::put('cart', $cart);
-//        session()->forget('cart');
+        //        session()->forget('cart');
         return redirect()->route('cartIndex');
     }
-    public function increaseQuantity(Request $request) {
+    public function increaseQuantity(Request $request)
+    {
         $cart = Session::get('cart');
         $maVe = $request->input('maVe');
         // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng không
-        if(isset($cart[$maVe])) {
+        if (isset($cart[$maVe])) {
             // Tăng số lượng khi click vào icon +
             $cart[$maVe]['quantity']++;
         }
         Session::put('cart', $cart);
         return redirect()->route('cartIndex');
     }
-    public function decreaseQuantity(Request $request) {
+    public function decreaseQuantity(Request $request)
+    {
         $cart = Session::get('cart');
         $maVe = $request->input('maVe');
         // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng không và số lượng lớn hơn 1 mới giảm
-        if(isset($cart[$maVe]) && $cart[$maVe]['quantity'] > 1) {
+        if (isset($cart[$maVe]) && $cart[$maVe]['quantity'] > 1) {
             // Giảm số lượng khi click vào icon -
             $cart[$maVe]['quantity']--;
         }
         Session::put('cart', $cart);
         return redirect()->route('cartIndex');
     }
-    public function removeItemFromCart(Request $request) {
+    public function removeItemFromCart(Request $request)
+    {
         $cart = Session::get('cart');
         $maVe = $request->input('maVe');
         if (isset($cart[$maVe])) {
@@ -128,7 +133,7 @@ class CartController extends Controller
             Session::forget('cart');
 
 
-            return view('cart.success');
+            return view('payment_success');
         } else {
             return view('cart.failure');
         }
