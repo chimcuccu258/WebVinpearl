@@ -133,7 +133,7 @@ class CartController extends Controller
             Session::forget('cart');
 
 
-            return view('payment_success');
+            return view('cart.payment_success');
         } else {
             return view('cart.failure');
         }
