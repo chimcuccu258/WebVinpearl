@@ -57,7 +57,8 @@ Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
-Route::get('/cart/payment_success', [CartController::class, 'payment_success'])->name('payment_success');
+Route::get('/paymentSuccess', [PaymentController::class, 'handlePaymentSuccess']);
+// Route::get('/payment-success', [PaymentController::class, 'handlePaymentSuccess']);
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
 Route::get('/info', [InfoController::class, 'show'])->name('info.show');
 
@@ -74,6 +75,7 @@ Route::middleware('checkLogin')->group(function(){
     Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
     Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
     Route::get('/cart/callback', [CartController::class, 'handlePaymentCallback'])->name('handlePaymentCallback');
+    Route::get('/cart/paymentSuccess', [CartController::class, 'paymentSuccess'])->name('paymentSuccess');
 });
 Route::get('register', [AuthManagerController::class, 'showRegistration'])->name('show-registration');
 Route::post('register', [AuthManagerController::class, 'register'])->name('register');
