@@ -87,7 +87,7 @@
             @endif
 
             <div class="py-10 text-center">
-                <a href="{{ route('homeIndex') }}" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+                <a href="{{ route('index') }}" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                     Hoặc quay về nhanh!
                 </a>
             </div>
@@ -98,7 +98,7 @@
     $(document).ready(function(){
         var seconds = 5;
         function redirect() {
-            window.location.href = '/homeIndex';
+            window.location.href = '/index';
         }
         var interval = setInterval(function() {
             $('#countdown').text(seconds);
