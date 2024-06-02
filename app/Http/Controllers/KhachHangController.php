@@ -35,7 +35,7 @@ class KhachHangController extends Controller
         }
         $data = $query->paginate(5);
 
-        return view('admin.khach_hangs.index' , [
+        return view('admin.khach_hangs.index', [
             'khach_hangs' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
@@ -104,6 +104,6 @@ class KhachHangController extends Controller
 
     public function export()
     {
-        return Excel::download(new KhachHangExport(), 'khach-hangs'.'.xlsx');
+        return Excel::download(new KhachHangExport(), 'khach-hangs' . '.xlsx');
     }
 }

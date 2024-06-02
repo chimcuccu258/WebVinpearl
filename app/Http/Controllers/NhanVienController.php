@@ -82,7 +82,7 @@ class NhanVienController extends Controller
         if ($result) {
             return redirect()->route('nhan_viens.index')->with('success', 'Thêm thành công!');
         }
-        return redirect()->route('nhan_viens.index')->with('error', 'Không thêm được khách hàng!');
+        return redirect()->route('nhan_viens.index')->with('error', 'Không thêm được nhân viên!');
     }
 
     public function show(NhanVien $nhanVien)
@@ -112,9 +112,9 @@ class NhanVienController extends Controller
             $nhanVien['anh'] = $imageName;
         }
         if ($nhanVien->save()) {
-            return redirect()->route('nhan_viens.index')->with('success', 'Cập nhật thông tin khách hàng thành công!');
+            return redirect()->route('nhan_viens.index')->with('success', 'Cập nhật thông tin nhân viên thành công!');
         }
-        return redirect()->route('nhan_viens.index')->with('error', 'Không thể cập nhật thông tin khách hàng!');
+        return redirect()->route('nhan_viens.index')->with('error', 'Không thể cập nhật thông tin nhân viên!');
     }
 
     public function destroy($maNV)

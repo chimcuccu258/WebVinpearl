@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests\Cthd;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCthdRequest extends FormRequest
